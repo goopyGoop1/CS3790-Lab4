@@ -9,8 +9,8 @@ using namespace std;       // Allows standard library names to be used without s
 
 const int ALIVE = 1;       // Represents a live cell
 const int DEAD = 0;        // Represents a dead cell
+int delay = 250000;
 
-mutex mtx;                 // Mutex for thread-safe operations (not fully utilized in the code)
 
 struct cell {              // Structure to represent a cell in the grid
     int x, y;              // x and y coordinates of the cell
@@ -45,7 +45,7 @@ void computeRegion(vector<vector<int>> &board, vector<vector<int>> &newBoard, in
 }
 
 void display(const vector<vector<int>> &board, int M) {
-    // mtx.lock();  // (Commented out) Lock mutex for thread-safe display
+    
 
     system("clear");   // Clear the console screen (Unix-based systems)
 
@@ -55,9 +55,9 @@ void display(const vector<vector<int>> &board, int M) {
         }
         cout << endl;                             // Newline after each row
     }
-    // mtx.unlock();  // (Commented out) Unlock mutex after display
+    
 
-    sleep(1);             // Pause for 1 second to show the next generation
+    usleep(delay);             // Used for delay
 }
 
 int main(int argc, char *argv[]) {
